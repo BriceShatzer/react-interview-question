@@ -1,6 +1,43 @@
 import React from 'react'
 
-function UserList() {
+function UserList(props) {
+    console.log(props.users);
+    console.log(typeof props.methods.removeItemById);
+    debugger
+    const list = props.users;
+    // const remove = (id)=> props.removeItemById(id);
+//    const remove = ;
+
+  //  debugger
+    
+    const users = list.map(user=>{
+        return (
+<tr key={user.id}>
+    <td>
+        {user.firstName}
+    </td>
+    <td>
+        {user.lastName}
+    </td>
+    <td>
+        {user.phone}
+    </td>
+    <td>
+        <button type='button'>
+            Edit
+        </button>
+        <button type='button' onClick={()=>{
+            alert('fired');
+            props.methods.removeItemById(user.id);
+            }}>
+            Delete
+        </button>
+    </td>
+</tr>            
+        )
+        
+
+    });
     return (
         <section>
             <h3 className='p-3 text-center'>Users</h3>
@@ -22,25 +59,7 @@ function UserList() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Lorem
-                        </td>
-                        <td>
-                            Ipsum
-                        </td>
-                        <td>
-                            1234567890
-                        </td>
-                        <td>
-                            <button type='button'>
-                                Edit
-                            </button>
-                            <button type='button'>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                    {users}
                 </tbody>
             </table>
         </section>
